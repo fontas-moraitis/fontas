@@ -1,0 +1,21 @@
+/* General Styling */
+body {
+  background-color: $color-cream-white;
+  color: $color-text-dark;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.wrapper {
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+@mixin shadow-out {
+  border: 1px solid $color-border-highlight;
+  box-shadow: -6px -6px 26px 0 $color-shadow-light, 6px 6px 16px 0 $color-shadow-dark;
+}
+
+@mixin shadow-in {
+  border: 1px solid $color-border-highlight;
+  box-shadow: inset -6px -6px 26px 0 $color-shadow-light, inset 6px 6px 16px 0 $color-shadow-dark;
+}
