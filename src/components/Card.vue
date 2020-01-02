@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div :style="{ width: cardWidth - 48 + 'px'}" class="card">
      <div class="card__info">
        <div class="card__info__logo">
          {{ item.logo }}
@@ -20,6 +20,10 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    cardWidth: {
+      type: Number,
+      required: true
     }
   }
 }
@@ -27,7 +31,6 @@ export default {
 
 <style lang="scss" scoped>
   .card {
-    width: 294px;
     height: 480px;
     flex-shrink: 0;
     flex-grow: 0;
@@ -45,15 +48,14 @@ export default {
       flex-direction: column;
       color: #515151;
       &__logo {
+        @include shadow-in;
+        font-family: 'Libre Barcode 39', cursive;
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        @include shadow-in;
-        background-position: center center;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: 'Fredericka the Great', cursive;
         font-size: $large-text;
       }
       &__text {
@@ -73,6 +75,29 @@ export default {
         &__link:hover {
           cursor: pointer;
           font-weight: $bold-text;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .card {
+      &__info {
+        padding: 0;
+        &__logo {
+          width: 40px;
+          height: 40px;
+          font-size: $fine-text;
+        }
+        &__text {
+          display: flex;
+          align-items: center;
+          &__title {
+            opacity: 0;
+          }
+          &__link {
+            writing-mode: vertical-lr;
+            transform: rotate(-180deg);
+          }
         }
       }
     }

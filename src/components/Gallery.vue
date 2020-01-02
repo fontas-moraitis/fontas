@@ -7,12 +7,13 @@
      ref="cardholder"
      class="gallery__cardholder">
       <div
-       :style="{ marginLeft: neoMargin + 'px' }"
+       :style="{ marginLeft: calcMargin + 'px' }"
        class="gallery__cardholder__carousel">
         <Card
-         v-for="(item, index) in items "
+         v-for="(item, index) in items"
          :key="index"
          :item="item"
+         :cardWidth="cardWidth"
          >
        </Card>
       </div>
@@ -30,6 +31,9 @@
 
 <script>
 import Card from '@/components/Card'
+
+const VISIBLE_CARD_NUMBER = 3
+
 export default {
   name: 'Gallery',
   components: {
@@ -38,29 +42,41 @@ export default {
   data () {
     return {
       items: [
-        { name: 'archviz', github: '//www.github.com', live: '//www.tasossiakotos.com', logo: 'as' },
-        { name: 'tech startup', github: '//www.github.com', live: '//www.apta.tech', logo: 'apta' },
-        { name: 'cv page', github: '//www.github.com', live: '//www.doramicha.me/', logo: 'dm' },
-        { name: 'folio', github: '//www.github.com', live: '//www.doramicha.me/', logo: 'fo' }
+        { name: 'archviz', github: 'https://github.com/fontas-moraitis/tasos-siakotos', live: '//www.tasossiakotos.com', logo: 'as' },
+        { name: 'tech startup', github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: 'apta' },
+        { name: 'cv page', github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: 'dora' },
+        { name: 'folio', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: 'fm' }
       ],
-      neoMargin: 0
+      calcMargin: 0,
+      cardHolderWidth: 0
     }
   },
   computed: {
-    cardholderWidth () {
-      return this.$refs.cardholder.getBoundingClientRect().width
+    cardWidth () {
+      return this.cardHolderWidth / VISIBLE_CARD_NUMBER
     }
+  },
+  mounted () {
+    this.cardHolderWidth = this.$refs.cardholder.offsetWidth
+    window.addEventListener('resize', this.resizeHandler)
   },
   methods: {
     next () {
-      if (this.neoMargin >= (this.items.length - 4) * -342) {
-        this.neoMargin -= 342
+      if (this.calcMargin >= 0) {
+        this.calcMargin -= this.cardWidth
+      } else {
+        this.calcMargin = 0
       }
     },
     previous () {
-      if (this.neoMargin <= -342) {
-        this.neoMargin += 342
+      if (this.calcMargin <= (-this.cardWidth)) {
+        this.calcMargin += this.cardWidth
+      } else {
+        this.calcMargin = -(this.cardWidth)
       }
+    },
+    resizeHandler () {
+      this.cardHolderWidth = this.$refs.cardholder.offsetWidth
     }
   }
 }
@@ -68,9 +84,10 @@ export default {
 
 <style lang="scss" scoped>
   .gallery {
-    margin-top: $size-xlarge;
+    margin-top: $size-xxlarge;
     &__intro {
-      margin: $size-large $size-medium;
+      margin: $size-small $size-medium;
+      font-size: $standar-text;
       font-weight: $bold-text;
     }
     &__cardholder {
@@ -84,7 +101,7 @@ export default {
       }
     }
     &__buttonholder {
-      width: $max-width;
+      max-width: $max-width;
       margin: $size-medium 0;
       display: flex;
       justify-content: center;
@@ -104,6 +121,15 @@ export default {
           border: none;
           outline: none;
         }
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .gallery {
+      margin-top: $size-medium;
+      &__intro {
+        margin: 0 0 $size-large 0;
+        font-size: $fine-text;
       }
     }
   }
