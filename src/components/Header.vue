@@ -3,9 +3,9 @@
       <h1>HELLO.</h1>
       <div class="header__intro">
         <p>
-        I am a frontend developer with a background in design.
-        I am working with HTML, CSS and JS, recently i started
-        experimenting with Vue and Vuex to create some of my websites.
+        I am a frontend developer with a background in digital and architectural design.
+        I started experimenting with HTML, CSS and JS, recently i picked up Vue and Vuex
+        which i now use to create most of my recent projects.
         </p>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default {
     margin-top: $size-small;
     h1 {
       font-size: $graphic-text;
-      font-weight: 600;
+      font-weight: 800;
       margin-bottom: $size-large;
     }
     &__intro {
@@ -42,6 +42,7 @@ export default {
   }
   @media only screen and (max-width: 600px) {
     .header {
+      padding: $size-small;
       h1 {
         font-size: $large-text;
         font-weight: 500;

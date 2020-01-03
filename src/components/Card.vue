@@ -49,7 +49,6 @@ export default {
       color: #515151;
       &__logo {
         @include shadow-in;
-        font-family: 'Libre Barcode 39', cursive;
         width: 100px;
         height: 100px;
         border-radius: 50%;
@@ -81,11 +80,14 @@ export default {
   }
   @media only screen and (max-width: 600px) {
     .card {
+      margin: $size-medium;
+      height: 320px;
+      @include shadow-out-mobile
       &__info {
         padding: 0;
         &__logo {
-          width: 40px;
-          height: 40px;
+          width: $box-element;
+          height: $box-element;
           font-size: $fine-text;
         }
         &__text {

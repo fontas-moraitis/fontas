@@ -42,10 +42,10 @@ export default {
   data () {
     return {
       items: [
-        { name: 'archviz', github: 'https://github.com/fontas-moraitis/tasos-siakotos', live: '//www.tasossiakotos.com', logo: 'as' },
-        { name: 'tech startup', github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: 'apta' },
-        { name: 'cv page', github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: 'dora' },
-        { name: 'folio', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: 'fm' }
+        { name: 'archviz', github: 'https://github.com/fontas-moraitis/tasos-siakotos', live: '//www.tasossiakotos.com', logo: '01' },
+        { name: 'tech startup', github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '02' },
+        { name: 'cv page', github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
+        { name: 'folio', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
       ],
       calcMargin: 0,
       cardHolderWidth: 0
@@ -106,13 +106,19 @@ export default {
       display: flex;
       justify-content: center;
       &__button {
-        width: 40px;
-        height: 40px;
+        width: $box-element;
+        height: $box-element;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: 1px solid $color-border-highlight;
         outline: none;
         @include shadow-out;
         margin: $size-small;
-        padding: $size-small;
+        & img {
+          width: 20px;
+          height: 20px;
+        }
         &:hover {
           cursor: pointer;
         }
@@ -120,6 +126,11 @@ export default {
           @include shadow-in;
           border: none;
           outline: none;
+          cursor: pointer;
+          & img {
+            width: 14px;
+            height: 14px;
+          }
         }
       }
     }
@@ -128,8 +139,14 @@ export default {
     .gallery {
       margin-top: $size-medium;
       &__intro {
-        margin: 0 0 $size-large 0;
+        margin: 0 0 $size-small 0;
         font-size: $fine-text;
+        padding: $size-small;
+      }
+      &__cardholder {
+        &__carousel {
+          height: 360px;
+        }
       }
     }
   }

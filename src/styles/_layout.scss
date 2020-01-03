@@ -19,3 +19,8 @@ body {
   border: 1px solid $color-border-highlight;
   box-shadow: inset -6px -6px 26px 0 $color-shadow-light, inset 6px 6px 16px 0 $color-shadow-dark;
 }
+
+@mixin shadow-out-mobile {
+  border: 1px solid $color-border-highlight;
+  box-shadow: -4px -4px 14px 0 $color-shadow-light, 4px 4px 10px 0 $color-shadow-dark;
+}

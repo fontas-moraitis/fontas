@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss" scoped>
   .footer {
-    margin-top: $size-xlarge;
+    margin-top: $size-large;
     &__container {
       max-width: $medium-width;
       margin: 0 auto;
