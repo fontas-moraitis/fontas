@@ -4,8 +4,6 @@
       <div class="header__intro">
         <p>
         I am a frontend developer with a background in digital and architectural design.
-        I started experimenting with HTML, CSS and JS, recently i picked up Vue and Vuex
-        which i now use to create most of my recent projects.
         </p>
       </div>
     </div>

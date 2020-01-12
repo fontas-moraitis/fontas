@@ -45,7 +45,7 @@ export default {
         { name: 'archviz', github: 'https://github.com/fontas-moraitis/tasos-siakotos', live: '//www.tasossiakotos.com', logo: '01' },
         { name: 'tech startup', github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '02' },
         { name: 'cv page', github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
-        { name: 'folio', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
+        { name: 'personal page', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
       ],
       calcMargin: 0,
       cardHolderWidth: 0
