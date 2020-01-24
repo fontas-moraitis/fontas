@@ -8,7 +8,12 @@
      class="gallery__cardholder">
       <div
        :style="{ marginLeft: calcMargin + 'px' }"
-       class="gallery__cardholder__carousel">
+       class="gallery__cardholder__carousel"
+       @mousedown="mouseDown($event)"
+       @mouseleave="mouseLeave($event)"
+       @mouseup="mouseUp($event)"
+       @mousemove.prevent="mouseMove($event)"
+       >
         <Card
          v-for="(item, index) in items"
          :key="index"
@@ -48,7 +53,10 @@ export default {
         { name: 'personal page', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
       ],
       calcMargin: 0,
-      cardHolderWidth: 0
+      cardHolderWidth: 0,
+      isDown: false,
+      startX: null,
+      scrollLeft: null
     }
   },
   computed: {
@@ -77,6 +85,23 @@ export default {
     },
     resizeHandler () {
       this.cardHolderWidth = this.$refs.cardholder.offsetWidth
+    },
+    mouseDown ($event) {
+      this.isDown = true
+      this.startX = $event.pageX - this.$refs.cardholder.offsetLeft
+      this.scrollLeft = this.$refs.cardholder.scrollLeft
+    },
+    mouseLeave () {
+      this.isDown = false
+    },
+    mouseUp () {
+      this.isDown = false
+    },
+    mouseMove ($event) {
+      if (!this.isDown) return
+      const x = $event.pageX - this.$refs.cardholder.offsetLeft
+      const walk = (x - this.startX) * 2
+      this.$refs.cardholder.scrollLeft = this.scrollLeft - walk
     }
   }
 }
@@ -138,6 +163,9 @@ export default {
   @media only screen and (max-width: 600px) {
     .gallery {
       margin-top: $size-medium;
+      &__cardholder {
+        overflow-x: scroll;
+      }
       &__intro {
         margin: 0 0 $size-small 0;
         font-size: $fine-text;
@@ -147,6 +175,9 @@ export default {
         &__carousel {
           height: 360px;
         }
+      }
+      &__buttonholder {
+        display: none;
       }
     }
   }

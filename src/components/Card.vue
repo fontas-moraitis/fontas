@@ -94,11 +94,14 @@ export default {
           display: flex;
           align-items: center;
           &__title {
-            opacity: 0;
+            writing-mode: vertical-lr;
+            transform: rotate(-180deg);
+            font-size: $mobile-text;
           }
           &__link {
             writing-mode: vertical-lr;
             transform: rotate(-180deg);
+            font-size: $mobile-text;
           }
         }
       }
