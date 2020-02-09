@@ -1,7 +1,7 @@
 <template>
   <div class="gallery wrapper">
     <div class="gallery__intro">
-      this is my work:
+      here is some of my work
     </div>
     <div
      ref="cardholder"
@@ -47,10 +47,10 @@ export default {
   data () {
     return {
       items: [
-        { name: 'archviz', github: 'https://github.com/fontas-moraitis/tasos-siakotos', live: '//www.tasossiakotos.com', logo: '01' },
-        { name: 'tech startup', github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '02' },
-        { name: 'cv page', github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
-        { name: 'personal page', github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
+        { name: '3D visualisation', description: `an 3D visualisation portfolio page build with html5, css3 & Javascript`, github: 'https://github.com/fontas-moraitis/arcviz-folio', live: '//www.tasossiakotos.com', logo: '01' },
+        { name: 'tech startup', description: `the website for a technology start-up created with vue.js and scss`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '02' },
+        { name: 'online cv-page', description: `the web version of a CV page with short bio, made with vue.js and scss`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
+        { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
       ],
       calcMargin: 0,
       cardHolderWidth: 0,
@@ -109,11 +109,12 @@ export default {
 
 <style lang="scss" scoped>
   .gallery {
-    margin-top: $size-xxlarge;
+    margin-top: $size-xlarge;
     &__intro {
       margin: $size-small $size-medium;
       font-size: $standar-text;
-      font-weight: $bold-text;
+      font-weight: $xbold-text;
+      text-transform: uppercase;
     }
     &__cardholder {
       max-width: $max-width;
@@ -168,8 +169,9 @@ export default {
       }
       &__intro {
         margin: 0 0 $size-small 0;
-        font-size: $fine-text;
+        font-size: $xfine-text;
         padding: $size-small;
+        font-weight: $regular-text;
       }
       &__cardholder {
         &__carousel {

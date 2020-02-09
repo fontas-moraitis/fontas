@@ -6,6 +6,7 @@
        </div>
        <div class="card__info__text">
          <div class="card__info__text__title">{{ item.name }}</div>
+         <div class="card__info__text__description">{{ item.description }}</div>
          <a class="card__info__text__link" :href="item.github" target="_blank">visit in github</a>
          <a class="card__info__text__link" :href="item.live" target="_blank">visit live</a>
        </div>
@@ -67,6 +68,14 @@ export default {
           margin-bottom: $size-small;
           text-transform: uppercase;
         }
+        &__description {
+          margin: 16px 0;
+          font-size: $xfine-text;
+          color: #505050;
+          text-transform: uppercase;
+          line-height: 1.5;
+          font-weight: 500;
+        }
         &__link {
           margin: 6px 0;
           font-size: $fine-text;
@@ -97,6 +106,9 @@ export default {
             writing-mode: vertical-lr;
             transform: rotate(-180deg);
             font-size: $mobile-text;
+          }
+          &__description {
+            display: none;
           }
           &__link {
             writing-mode: vertical-lr;
