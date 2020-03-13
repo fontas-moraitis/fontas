@@ -75,14 +75,19 @@ export default {
           text-transform: uppercase;
           line-height: 1.5;
           font-weight: 500;
+          margin-bottom: 52px;
         }
         &__link {
           margin: 6px 0;
           font-size: $fine-text;
+          border: 1px solid $color-border-highlight;
+          box-shadow: -4px -4px 14px 0 $color-shadow-light, 4px 4px 8px 0 $color-shadow-dark;
+          padding: 8px;
         }
         &__link:hover {
           cursor: pointer;
           font-weight: $bold-text;
+          @include shadow-in;
         }
       }
     }
