@@ -119,6 +119,8 @@ export default {
             writing-mode: vertical-lr;
             transform: rotate(-180deg);
             font-size: $mobile-text;
+            border: none;
+            box-shadow: none;
           }
         }
       }
