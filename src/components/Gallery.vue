@@ -1,8 +1,6 @@
 <template>
   <div class="gallery wrapper">
-    <div class="gallery__intro">
-      here is some of my work
-    </div>
+    <div class="gallery__intro">here is some of my work<span class="nav_guide">navigate with left and right arrows</span></div>
     <div
      ref="cardholder"
      class="gallery__cardholder">
@@ -47,8 +45,9 @@ export default {
   data () {
     return {
       items: [
-        { name: '3D visualisation', description: `an 3D visualisation portfolio page build with html5, css3 & Javascript`, github: 'https://github.com/fontas-moraitis/arcviz-folio', live: '//www.tasossiakotos.com', logo: '01' },
-        { name: 'tech startup', description: `the website for a technology start-up created with vue.js and scss`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '02' },
+        { name: 'gallery / eshop', description: `gallery with eshop mock-up contact form for artist, build with vue`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.oceanic-trains.surge.sh', logo: 'new' },
+        { name: 'tech startup', description: `the website for a technology start-up created with vue.js and scss`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
+        { name: '3D visualisation', description: `an 3D visualisation portfolio page build with html5, css3 & Javascript`, github: 'https://github.com/fontas-moraitis/arcviz-folio', live: '//www.tasossiakotos.com', logo: '02' },
         { name: 'online cv-page', description: `the web version of a CV page with short bio, made with vue.js and scss`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
         { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
       ],
@@ -56,7 +55,8 @@ export default {
       cardHolderWidth: 0,
       isDown: false,
       startX: null,
-      scrollLeft: null
+      scrollLeft: null,
+      isKeyboardNav: true // Switch boolean in case of eventListener removal
     }
   },
   computed: {
@@ -67,6 +67,7 @@ export default {
   mounted () {
     this.cardHolderWidth = this.$refs.cardholder.offsetWidth
     window.addEventListener('resize', this.resizeHandler)
+    document.addEventListener('keydown', event => this.keyboardNavigation())
   },
   methods: {
     next () {
@@ -102,6 +103,17 @@ export default {
       const x = $event.pageX - this.$refs.cardholder.offsetLeft
       const walk = (x - this.startX) * 2
       this.$refs.cardholder.scrollLeft = this.scrollLeft - walk
+    },
+    keyboardNavigation () {
+      if (this.isKeyboardNav) {
+        if (event.keyCode === 39) {
+          this.next()
+        } else if (event.keyCode === 37) {
+          this.previous()
+        }
+      } else {
+        document.removeEventListener('keydown', event => this.keyboardNavigation())
+      }
     }
   }
 }
@@ -115,6 +127,12 @@ export default {
       font-size: $standar-text;
       font-weight: $xbold-text;
       text-transform: uppercase;
+      .nav_guide {
+        text-transform: lowercase;
+        font-weight: $thin-text;
+        font-size: $size-small;
+        margin-left: 20px;
+      }
     }
     &__cardholder {
       max-width: $max-width;
