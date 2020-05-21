@@ -18,10 +18,24 @@ export default {
   .footer {
     margin-top: $size-large;
     &__container {
-      max-width: $medium-width;
+      max-width: $large-width;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
+      a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background: linear-gradient(145deg, #ffffff, #d7d6d6);
+        box-shadow: 2px 2px 6px $color-shadow-dark, -2px -2px 6px $color-shadow-light;
+        &:active {
+          background: #efeeee;
+          box-shadow: inset 4px 4px 10px$color-shadow-dark, inset -4px -4px 10px$color-shadow-light;
+        }
+      }
       img {
         width: 20px;
         height: 20px;

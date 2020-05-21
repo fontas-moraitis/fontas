@@ -1,6 +1,10 @@
 <template>
   <div class="gallery wrapper">
-    <div class="gallery__intro">here is some of my work<span class="nav_guide">navigate with left and right arrows</span></div>
+    <div class="gallery__intro">
+      here is some of my work
+      <div class="nav_guide">navigate with left and right arrows</div>
+      <div class="nav_guide--mobile">scroll left or right</div>
+      </div>
     <div
      ref="cardholder"
      class="gallery__cardholder">
@@ -45,10 +49,10 @@ export default {
   data () {
     return {
       items: [
-        { name: 'gallery / eshop', description: `gallery with eshop mock-up contact form for artist, build with vue`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.oceanic-trains.surge.sh', logo: 'new' },
-        { name: 'tech startup', description: `the website for a technology start-up created with vue.js and scss`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
-        { name: '3D visualisation', description: `an 3D visualisation portfolio page build with html5, css3 & Javascript`, github: 'https://github.com/fontas-moraitis/arcviz-folio', live: '//www.tasossiakotos.com', logo: '02' },
-        { name: 'online cv-page', description: `the web version of a CV page with short bio, made with vue.js and scss`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
+        { name: 'gallery eshop', description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, build with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.oceanic-trains.surge.sh', logo: 'new' },
+        { name: 'tech startup', description: `website for a technology start-up in the Hague, including a style guide, created with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
+        { name: 'portofolio', description: `3D arch. viz portfolio page with content managment service (Contentful), build with html5, css3 & JS`, github: 'https://github.com/fontas-moraitis/arcviz-folio', live: '//www.tasossiakotos.com', logo: '02' },
+        { name: 'online cv-page', description: `the web version of a CV page,created as an exercise, made with vue`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
         { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
       ],
       calcMargin: 0,
@@ -131,7 +135,10 @@ export default {
         text-transform: lowercase;
         font-weight: $thin-text;
         font-size: $size-small;
-        margin-left: 20px;
+        margin-top: 6px;
+      }
+      .nav_guide--mobile {
+        display: none;
       }
     }
     &__cardholder {
@@ -142,11 +149,14 @@ export default {
         display: flex;
         margin: 0;
         transition: all 1000ms ease;
+        .card {
+          border-radius: 10px;
+        }
       }
     }
     &__buttonholder {
       max-width: $max-width;
-      margin: $size-medium 0;
+      margin: $size-small 0 $size-medium 0;
       display: flex;
       justify-content: center;
       &__button {
@@ -158,6 +168,7 @@ export default {
         border: 1px solid $color-border-highlight;
         outline: none;
         @include shadow-out;
+        border-radius: 8px;
         margin: $size-small;
         & img {
           width: 20px;
@@ -190,6 +201,16 @@ export default {
         font-size: $xfine-text;
         padding: $size-small;
         font-weight: $regular-text;
+        .nav_guide--mobile {
+        display: block;
+        text-transform: lowercase;
+        font-weight: $thin-text;
+        font-size: $size-xsmall;
+        margin-top: 6px;
+        }
+        .nav_guide {
+          display: none;
+        }
       }
       &__cardholder {
         &__carousel {

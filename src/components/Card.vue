@@ -81,12 +81,13 @@ export default {
           margin: 6px 0;
           font-size: $fine-text;
           border: 1px solid $color-border-highlight;
-          box-shadow: -4px -4px 14px 0 $color-shadow-light, 4px 4px 8px 0 $color-shadow-dark;
+          // box-shadow: -2px -2px 6px 0 $color-shadow-light, 2px 2px 6px 0 $color-shadow-dark;
           padding: 8px;
+          border-radius: 4px;
         }
         &__link:hover {
           cursor: pointer;
-          font-weight: $bold-text;
+          color: #16a085;
           @include shadow-in;
         }
       }
@@ -111,6 +112,7 @@ export default {
             writing-mode: vertical-lr;
             transform: rotate(-180deg);
             font-size: $mobile-text;
+            height: 80%;
           }
           &__description {
             display: none;
