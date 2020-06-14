@@ -7,8 +7,8 @@
        <div class="card__info__text">
          <div class="card__info__text__title">{{ item.name }}</div>
          <div class="card__info__text__description">{{ item.description }}</div>
-         <a class="card__info__text__link" :href="item.github" target="_blank">visit in github</a>
-         <a class="card__info__text__link" :href="item.live" target="_blank">visit live</a>
+         <a class="card__info__text__link" :href="item.github" target="_blank" rel="noopener">visit in github</a>
+         <a class="card__info__text__link" :href="item.live" target="_blank" rel="noopener">visit live</a>
        </div>
      </div>
   </div>

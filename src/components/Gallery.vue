@@ -1,11 +1,11 @@
 <template>
-  <div class="gallery wrapper">
-    <div class="gallery__intro">
-      here is some of my work
+  <main class="gallery wrapper">
+    <section class="gallery__intro">
+      This is some of my work
       <div class="nav_guide">navigate with left and right arrows</div>
       <div class="nav_guide--mobile">scroll left or right</div>
-      </div>
-    <div
+    </section>
+    <section
      ref="cardholder"
      class="gallery__cardholder">
       <div
@@ -24,16 +24,18 @@
          >
        </Card>
       </div>
-    </div>
-    <div class="gallery__buttonholder">
+    </section>
+    <section class="gallery__buttonholder">
       <button
        @click="previous"
-       class="gallery__buttonholder__button" type="button" name="back"><img src="@/assets/back.svg" /></button>
+       aria-label="button previous"
+       class="gallery__buttonholder__button" type="button" name="back"><img src="@/assets/back.svg" alt="arrow pointing back"/></button>
       <button
        @click="next"
-       class="gallery__buttonholder__button" type="button" name="next"><img src="@/assets/next.svg" /></button>
-    </div>
-  </div>
+       aria-label="button next"
+       class="gallery__buttonholder__button" type="button" name="next"><img src="@/assets/next.svg" alt="arrow pointing forward"/></button>
+    </section>
+  </main>
 </template>
 
 <script>

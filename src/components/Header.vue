@@ -1,13 +1,13 @@
 <template>
-    <div class="header wrapper">
+    <header class="header wrapper">
       <h1>HELLO.</h1>
       <div class="header__intro">
         <p>
-        I am a frontend developer with a background in digital and architectural design.
-        I enjoy building websites and exploring new technologies.
+          I am a frontend developer with a background in digital and architectural design.
+          I enjoy building websites and exploring new technologies.
         </p>
       </div>
-    </div>
+    </header>
 </template>
 
 <script>
