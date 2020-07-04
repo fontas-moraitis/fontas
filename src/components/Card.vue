@@ -7,7 +7,7 @@
        <div class="card__info__text">
          <div class="card__info__text__title">{{ item.name }}</div>
          <div class="card__info__text__description">{{ item.description }}</div>
-         <a class="card__info__text__link" :href="item.github" target="_blank" rel="noopener">visit in github</a>
+         <a class="card__info__text__link" :href="item.github" target="_blank" rel="noopener">source code <img src="@/assets/iconfinder-github.svg" width="14rem" /></a>
          <a class="card__info__text__link" :href="item.live" target="_blank" rel="noopener">visit live</a>
        </div>
      </div>
@@ -87,7 +87,7 @@ export default {
         }
         &__link:hover {
           cursor: pointer;
-          color: #16a085;
+          color: salmon;
           @include shadow-in;
         }
       }

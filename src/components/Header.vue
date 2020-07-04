@@ -1,5 +1,6 @@
 <template>
-    <header class="header wrapper">
+    <header @mousemove="getMousePosition" class="header wrapper">
+      <div ref="ball" class="ball"></div>
       <h1>HELLO.</h1>
       <div class="header__intro">
         <p>
@@ -12,7 +13,39 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data () {
+    return {
+      mouseX: 0,
+      mouseY: 0,
+      ballX: 0,
+      ballY: 0,
+      speed: 0.08
+    }
+  },
+  mounted () {
+    this.animateBall()
+  },
+  methods: {
+    getMousePosition () {
+      this.mouseX = event.pageX
+      this.mouseY = event.pageY
+    },
+    animateBall () {
+      let distX = this.mouseX - this.ballX
+      let distY = this.mouseY - this.ballY
+
+      this.ballX = this.ballX + (distX * this.speed)
+      this.ballY = this.ballY + (distY * this.speed)
+
+      if (this.$refs.ball) {
+        this.$refs.ball.style.left = `${this.ballX}px`
+        this.$refs.ball.style.top = `${this.ballY}px`
+      }
+
+      requestAnimationFrame(this.animateBall)
+    }
+  }
 }
 </script>
 
@@ -21,6 +54,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin-top: $size-small;
+    cursor: default;
     h1 {
       font-size: $graphic-text;
       font-weight: 800;
@@ -38,7 +72,22 @@ export default {
         line-height: 1.4;
       }
     }
+
+    .ball {
+      width: 30vmin;
+      height: 30vmin;
+      border-radius: 50%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      background: $color-text-dark;
+
+      mix-blend-mode: difference;
+    }
   }
+
   @media only screen and (max-width: 600px) {
     .header {
       padding: $size-small;
