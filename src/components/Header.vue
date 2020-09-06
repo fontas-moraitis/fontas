@@ -38,7 +38,7 @@ export default {
       this.ballX = this.ballX + (distX * this.speed)
       this.ballY = this.ballY + (distY * this.speed)
 
-      if (this.$refs.ball) {
+      if (this.$refs.ball && this.ballY < 400) {
         this.$refs.ball.style.left = `${this.ballX}px`
         this.$refs.ball.style.top = `${this.ballY}px`
       }

@@ -80,7 +80,7 @@ export default {
         &__link {
           margin: 6px 0;
           font-size: $fine-text;
-          border: 1px solid $color-border-highlight;
+          border: .5px solid lightsalmon;
           // box-shadow: -2px -2px 6px 0 $color-shadow-light, 2px 2px 6px 0 $color-shadow-dark;
           padding: 8px;
           border-radius: 4px;
