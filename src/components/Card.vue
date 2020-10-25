@@ -67,6 +67,7 @@ export default {
           font-weight: $bold-text;
           margin-bottom: $size-small;
           text-transform: uppercase;
+          white-space: nowrap;
         }
         &__description {
           margin: 16px 0;
@@ -96,7 +97,7 @@ export default {
   @media only screen and (max-width: 600px) {
     .card {
       margin: $size-medium;
-      height: 320px;
+      height: 360px;
       @include shadow-out-mobile
       &__info {
         padding: 0;
@@ -113,6 +114,8 @@ export default {
             transform: rotate(-180deg);
             font-size: $mobile-text;
             height: 80%;
+            white-space: nowrap;
+            margin-bottom: 20px;
           }
           &__description {
             display: none;
@@ -121,8 +124,13 @@ export default {
             writing-mode: vertical-lr;
             transform: rotate(-180deg);
             font-size: $mobile-text;
+            color: salmon;
             border: none;
             box-shadow: none;
+            text-decoration: underline;
+            img {
+              display: none;
+            }
           }
         }
       }

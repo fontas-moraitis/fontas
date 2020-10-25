@@ -197,6 +197,7 @@ export default {
       margin-top: $size-medium;
       &__cardholder {
         overflow-x: scroll;
+        height: 400px;
       }
       &__intro {
         margin: 0 0 $size-small 0;
