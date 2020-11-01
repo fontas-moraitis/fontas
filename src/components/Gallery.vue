@@ -55,9 +55,8 @@ export default {
       items: [
         { name: 'gallery eshop', description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, build with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.oceanic-trains.surge.sh', logo: 'new' },
         { name: 'tech startup', description: `website for a technology start-up in the Hague, including a style guide, created with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
-        { name: 'portofolio', description: `3D arch. viz portfolio page with content managment service (Contentful), build with html5, css3 & JS`, github: 'https://github.com/fontas-moraitis/arcviz-folio', live: '//www.tasossiakotos.com', logo: '02' },
-        { name: 'online cv-page', description: `the web version of a CV page,created as an exercise, made with vue`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '03' },
-        { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '04' }
+        { name: 'online cv-page', description: `the web version of a CV page,created as an exercise, made with vue`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '02' },
+        { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '03' }
       ],
       calcMargin: 0,
       cardHolderWidth: 0,
@@ -69,7 +68,7 @@ export default {
   },
   computed: {
     cardWidth () {
-      return this.cardHolderWidth / VISIBLE_CARD_NUMBER
+      return Math.ceil(this.cardHolderWidth / VISIBLE_CARD_NUMBER)
     }
   },
   mounted () {
@@ -82,7 +81,7 @@ export default {
   },
   methods: {
     next () {
-      if (this.calcMargin >= 0 || this.calcMargin === (-this.cardWidth)) {
+      if (this.calcMargin >= (-this.cardWidth) * (this.items.length - (VISIBLE_CARD_NUMBER + 1))) {
         this.calcMargin -= this.cardWidth
       } else {
         this.calcMargin = 0
@@ -92,7 +91,7 @@ export default {
       if (this.calcMargin <= (-this.cardWidth)) {
         this.calcMargin += this.cardWidth
       } else {
-        this.calcMargin = -(this.cardWidth) * 2
+        this.calcMargin = (-this.cardWidth) * (this.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
       }
     },
     resizeHandler () {
