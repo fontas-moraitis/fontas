@@ -1,10 +1,12 @@
 <template>
   <main class="gallery wrapper">
+
     <section class="gallery__intro">
       This is some of my work
       <div class="nav_guide">navigate with left and right arrows</div>
       <div class="nav_guide--mobile">scroll left or right</div>
     </section>
+
     <section
      ref="cardholder"
      class="gallery__cardholder">
@@ -75,9 +77,12 @@ export default {
     window.addEventListener('resize', this.resizeHandler)
     document.addEventListener('keydown', event => this.keyboardNavigation())
   },
+  beforeDestroy () {
+    document.removeEventListener('keydown', event => this.keyboardNavigation())
+  },
   methods: {
     next () {
-      if (this.calcMargin >= 0) {
+      if (this.calcMargin >= 0 || this.calcMargin === (-this.cardWidth)) {
         this.calcMargin -= this.cardWidth
       } else {
         this.calcMargin = 0
@@ -87,7 +92,7 @@ export default {
       if (this.calcMargin <= (-this.cardWidth)) {
         this.calcMargin += this.cardWidth
       } else {
-        this.calcMargin = -(this.cardWidth)
+        this.calcMargin = -(this.cardWidth) * 2
       }
     },
     resizeHandler () {
@@ -117,8 +122,6 @@ export default {
         } else if (event.keyCode === 37) {
           this.previous()
         }
-      } else {
-        document.removeEventListener('keydown', event => this.keyboardNavigation())
       }
     }
   }

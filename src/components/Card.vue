@@ -82,14 +82,13 @@ export default {
           margin: 6px 0;
           font-size: $fine-text;
           border: .5px solid lightsalmon;
-          // box-shadow: -2px -2px 6px 0 $color-shadow-light, 2px 2px 6px 0 $color-shadow-dark;
           padding: 8px;
           border-radius: 4px;
         }
         &__link:hover {
           cursor: pointer;
           color: salmon;
-          @include shadow-in;
+          box-shadow: inset -6px -6px 26px 0 $color-shadow-light, inset 6px 6px 16px 0 $color-shadow-dark;
         }
       }
     }
