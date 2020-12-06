@@ -19,7 +19,7 @@
        @mousemove.prevent="mouseMove($event)"
        >
         <Card
-         v-for="(item, index) in items"
+         v-for="(item, index) in $options.items"
          :key="index"
          :item="item"
          :cardWidth="cardWidth"
@@ -52,12 +52,6 @@ export default {
   },
   data () {
     return {
-      items: [
-        { name: 'gallery eshop', description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, build with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.oceanic-trains.surge.sh', logo: 'new' },
-        { name: 'tech startup', description: `website for a technology start-up in the Hague, including a style guide, created with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
-        { name: 'online cv-page', description: `the web version of a CV page,created as an exercise, made with vue`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '02' },
-        { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '03' }
-      ],
       calcMargin: 0,
       cardHolderWidth: 0,
       isDown: false,
@@ -71,6 +65,14 @@ export default {
       return Math.ceil(this.cardHolderWidth / VISIBLE_CARD_NUMBER)
     }
   },
+  created () {
+    this.$options.items = [
+      { name: 'gallery eshop', description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, build with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.stavrosperakis.com', logo: 'new' },
+      { name: 'tech startup', description: `website for a technology start-up in the Hague, including a style guide, created with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
+      { name: 'online cv-page', description: `the web version of a CV page,created as an exercise, made with vue`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '02' },
+      { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '03' }
+    ]
+  },
   mounted () {
     this.cardHolderWidth = this.$refs.cardholder.offsetWidth
     window.addEventListener('resize', this.resizeHandler)
@@ -81,7 +83,7 @@ export default {
   },
   methods: {
     next () {
-      if (this.calcMargin >= (-this.cardWidth) * (this.items.length - (VISIBLE_CARD_NUMBER + 1))) {
+      if (this.calcMargin >= (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER + 1))) {
         this.calcMargin -= this.cardWidth
       } else {
         this.calcMargin = 0
@@ -91,7 +93,7 @@ export default {
       if (this.calcMargin <= (-this.cardWidth)) {
         this.calcMargin += this.cardWidth
       } else {
-        this.calcMargin = (-this.cardWidth) * (this.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
+        this.calcMargin = (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
       }
     },
     resizeHandler () {
