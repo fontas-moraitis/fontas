@@ -2,7 +2,7 @@
   <footer class="footer wrapper">
     <div class="footer__container">
       <a href="https://github.com/fontas-moraitis" target="_blank" rel="noopener"><img src="@/assets/iconfinder-github.svg" alt="github-icon"></a>
-      <a href="https://www.instagram.com/fontas_/" target="_blank" rel="noopener"><img src="@/assets/iconfinder-instagram.svg" alt="instagram-icon"></a>
+      <a href="https://dribbble.com/fontas" target="_blank" rel="noopener"><img src="@/assets/dribbble.svg" alt="dribbble-icon"></a>
       <a href="https://www.linkedin.com/in/fontas-moraitis-34338819b/" target="_blank" rel="noopener"><img src="@/assets/iconfinder-linkedin.svg" alt="linkedin-icon"></a>
     </div>
   </footer>
