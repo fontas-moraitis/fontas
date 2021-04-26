@@ -19,36 +19,36 @@
 const SPEED = 0.08
 
 export default {
-  name: 'Header',
-  data: () => ({
-    mouseX: 0,
-    mouseY: 0,
-    ballX: 0,
-    ballY: 0
-  }),
-  mounted () {
-    this.animateBall()
-  },
-  methods: {
-    getMousePosition () {
-      this.mouseX = event.pageX
-      this.mouseY = event.pageY
-    },
-    animateBall () {
-      let distX = this.mouseX - this.ballX
-      let distY = this.mouseY - this.ballY
+	name: 'Header',
+	data: () => ({
+		mouseX: 0,
+		mouseY: 0,
+		ballX: 0,
+		ballY: 0
+	}),
+	mounted () {
+		this.animateBall()
+	},
+	methods: {
+		getMousePosition () {
+			this.mouseX = event.pageX
+			this.mouseY = event.pageY
+		},
+		animateBall () {
+			let distX = this.mouseX - this.ballX
+			let distY = this.mouseY - this.ballY
 
-      this.ballX = this.ballX + (distX * SPEED)
-      this.ballY = this.ballY + (distY * SPEED)
+			this.ballX = this.ballX + (distX * SPEED)
+			this.ballY = this.ballY + (distY * SPEED)
 
-      if (this.$refs.ball && this.ballY < 400) {
-        this.$refs.ball.style.left = `${this.ballX}px`
-        this.$refs.ball.style.top = `${this.ballY}px`
-      }
+			if (this.$refs.ball && this.ballY < 400) {
+				this.$refs.ball.style.left = `${this.ballX}px`
+				this.$refs.ball.style.top = `${this.ballY}px`
+			}
 
-      requestAnimationFrame(this.animateBall)
-    }
-  }
+			requestAnimationFrame(this.animateBall)
+		}
+	}
 }
 </script>
 

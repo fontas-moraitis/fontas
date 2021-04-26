@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Animations'
+	name: 'Animations'
 }
 </script>
 

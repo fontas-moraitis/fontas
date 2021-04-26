@@ -1,32 +1,39 @@
 <template>
-  <div :style="{ width: cardWidth - 48 + 'px'}" class="card">
-     <div class="card__info">
-       <div class="card__info__logo">
-         {{ item.logo }}
-       </div>
-       <div class="card__info__text">
-         <div class="card__info__text__title">{{ item.name }}</div>
-         <div class="card__info__text__description">{{ item.description }}</div>
-         <a class="card__info__text__link" :href="item.github" target="_blank" rel="noopener">source code <img src="@/assets/iconfinder-github.svg" width="14rem" /></a>
-         <a class="card__info__text__link" :href="item.live" target="_blank" rel="noopener">visit live</a>
-       </div>
-     </div>
-  </div>
+	<section :style="{ width: cardWidth - 48 + 'px'}" class="card">
+		<div class="card__info">
+			<div class="card__info__logo">
+				{{ item.logo }}
+			</div>
+			<div class="card__info__text">
+				<div class="card__info__text__title">
+					{{ item.name }}
+				</div>
+				<div class="card__info__text__description">{{ item.description }}</div>
+				<a class="card__info__text__link" :href="item.github" target="_blank" rel="noopener">
+					<span>source code</span>
+					<img width="14rem" src="@/assets/iconfinder-github.svg" alt="github icon"/>
+				</a>
+				<a class="card__info__text__link" :href="item.live" target="_blank" rel="noopener">
+					visit live
+				</a>
+			</div>
+		</div>
+	</section>
 </template>
 
 <script>
 export default {
-  name: 'Card',
-  props: {
-    item: {
-      type: Object,
-      required: true
-    },
-    cardWidth: {
-      type: Number,
-      required: true
-    }
-  }
+	name: 'Card',
+	props: {
+		item: {
+			type: Object,
+			required: true
+		},
+		cardWidth: {
+			type: Number,
+			required: true
+		}
+	}
 }
 </script>
 
@@ -79,6 +86,10 @@ export default {
           margin-bottom: 52px;
         }
         &__link {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 4px;
           margin: 6px 0;
           font-size: $fine-text;
           border: .5px solid lightsalmon;
@@ -93,6 +104,7 @@ export default {
       }
     }
   }
+
   @media only screen and (max-width: 600px) {
     .card {
       margin: $size-medium;

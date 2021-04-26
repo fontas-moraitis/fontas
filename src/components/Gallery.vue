@@ -60,102 +60,102 @@ import Card from '@/components/Card'
 const VISIBLE_CARD_NUMBER = 3
 
 export default {
-  name: 'Gallery',
-  components: { Card },
-  data: () => ({
-    calcMargin: 0,
-    cardHolderWidth: 0,
-    isDown: false,
-    startX: null,
-    scrollLeft: null
-  }),
-  computed: {
-    cardWidth () {
-      return Math.ceil(this.cardHolderWidth / VISIBLE_CARD_NUMBER)
-    }
-  },
-  created () {
-    this.$options.items = [
-      {
-        name: 'comming soon',
-        description: `a PWA for calculating cooking mats, REACT`,
-        github: 'https://github.com/fontas-moraitis',
-        live: '',
-        logo: 'new'
-      },
-      {
-        name: 'gallery eshop',
-        description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, VUE & VUEx`,
-        github: 'https://github.com/fontas-moraitis/Gallery-eshop',
-        live: '//www.stavrosperakis.com',
-        logo: '01'
-      },
-      {
-        name: 'tech startup',
-        description: `website for a technology start-up in the Hague, including a style guide, VUE & VUEx`,
-        github: 'https://github.com/fontas-moraitis/apta',
-        live: '//www.apta.tech',
-        logo: '02'
-      },
-      {
-        name: 'personal page',
-        description: `link to the github repo of this page`,
-        github: 'https://github.com/fontas-moraitis/fontas',
-        live: '//www.fontas.me/',
-        logo: '03'
-      }
-    ]
-  },
-  mounted () {
-    this.cardHolderWidth = this.$refs.cardholder.offsetWidth
-    window.addEventListener('resize', this.resizeHandler)
-    document.addEventListener('keydown', event => this.keyboardNavigation(event))
-  },
-  beforeDestroy () {
-    document.removeEventListener('keydown', event => this.keyboardNavigation(event))
-  },
-  methods: {
-    next () {
-      this.calcMargin >= (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER + 1))
-        ? this.calcMargin -= this.cardWidth
-        : this.calcMargin = 0
-    },
-    previous () {
-      this.calcMargin <= (-this.cardWidth)
-        ? this.calcMargin += this.cardWidth
-        : this.calcMargin = (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
-    },
-    resizeHandler () {
-      this.cardHolderWidth = this.$refs.cardholder?.offsetWidth
-    },
-    mouseDown (event) {
-      this.isDown = true
-      this.startX = event.pageX - this.$refs.cardholder.offsetLeft
-      this.scrollLeft = this.$refs.cardholder.scrollLeft
-    },
-    mouseLeave () {
-      this.isDown = false
-    },
-    mouseMove (event) {
-      if (!this.isDown) {
-        const x = event.pageX - this.$refs.cardholder.offsetLeft
-        const walk = (x - this.startX) * 2
-        this.$refs.cardholder.scrollLeft = this.scrollLeft - walk
-      }
-    },
-    keyboardNavigation (event) {
-      switch (event.keyCode) {
-        case 39:
-          this.next()
-          break
-        case 37:
-          this.previous()
-          break
-        default:
-          break
-      }
-    }
-  }
+	name: 'Gallery',
+	components: { Card },
+	data: () => ({
+		calcMargin: 0,
+		cardHolderWidth: 0,
+		isDown: false,
+		startX: null,
+		scrollLeft: null
+	}),
+	computed: {
+		cardWidth () {
+			return Math.ceil(this.cardHolderWidth / VISIBLE_CARD_NUMBER)
+		}
+	},
+	created () {
+		this.$options.items = [
+			{
+				name: 'comming soon',
+				description: `a PWA for calculating cooking mats, REACT`,
+				github: 'https://github.com/fontas-moraitis',
+				live: '',
+				logo: 'new'
+			},
+			{
+				name: 'gallery eshop',
+				description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, VUE & VUEx`,
+				github: 'https://github.com/fontas-moraitis/Gallery-eshop',
+				live: '//www.stavrosperakis.com',
+				logo: '01'
+			},
+			{
+				name: 'tech startup',
+				description: `website for a technology start-up in the Hague, including a style guide, VUE & VUEx`,
+				github: 'https://github.com/fontas-moraitis/apta',
+				live: '//www.apta.tech',
+				logo: '02'
+			},
+			{
+				name: 'personal page',
+				description: `link to the github repo of this page`,
+				github: 'https://github.com/fontas-moraitis/fontas',
+				live: '//www.fontas.me/',
+				logo: '03'
+			}
+		]
+	},
+	mounted () {
+		this.cardHolderWidth = this.$refs.cardholder.offsetWidth
+		window.addEventListener('resize', this.resizeHandler)
+		document.addEventListener('keydown', event => this.keyboardNavigation(event))
+	},
+	beforeDestroy () {
+		document.removeEventListener('keydown', event => this.keyboardNavigation(event))
+	},
+	methods: {
+		next () {
+			this.calcMargin >= (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER + 1))
+				? this.calcMargin -= this.cardWidth
+				: this.calcMargin = 0
+		},
+		previous () {
+			this.calcMargin <= (-this.cardWidth)
+				? this.calcMargin += this.cardWidth
+				: this.calcMargin = (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
+		},
+		resizeHandler () {
+			this.cardHolderWidth = this.$refs.cardholder?.offsetWidth
+		},
+		mouseDown (event) {
+			this.isDown = true
+			this.startX = event.pageX - this.$refs.cardholder.offsetLeft
+			this.scrollLeft = this.$refs.cardholder.scrollLeft
+		},
+		mouseLeave () {
+			this.isDown = false
+		},
+		mouseMove (event) {
+			if (!this.isDown) {
+				const x = event.pageX - this.$refs.cardholder.offsetLeft
+				const walk = (x - this.startX) * 2
+				this.$refs.cardholder.scrollLeft = this.scrollLeft - walk
+			}
+		},
+		keyboardNavigation (event) {
+			switch (event.keyCode) {
+			case 39:
+				this.next()
+				break
+			case 37:
+				this.previous()
+				break
+			default:
+				break
+			}
+		}
+	}
 }
 </script>
 

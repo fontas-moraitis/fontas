@@ -13,7 +13,7 @@ import Gallery from '@/components/Gallery'
 import Footer from '@/components/Footer'
 
 export default {
-  name: 'home',
-  components: { Header, Gallery, Footer }
+	name: 'home',
+	components: { Header, Gallery, Footer }
 }
 </script>
