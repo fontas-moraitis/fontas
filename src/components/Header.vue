@@ -1,28 +1,31 @@
 <template>
-    <header @mousemove="getMousePosition" class="header wrapper">
-      <div ref="ball" class="ball"></div>
-      <h1>HELLO.</h1>
+    <header class="header wrapper" @mousemove="getMousePosition">
+      <div ref="ball" class="ball" />
+      <h1 class="header__title">HELLO.</h1>
       <div class="header__intro">
-        <p>
-          I am a frontend developer with a background in digital and architectural design.
-          I enjoy building websites and exploring new technologies.
+        <p class="header__intro__text">
+            I am a frontend developer with a background in digital and architectural design.
+            I enjoy building websites and exploring new technologies.
         </p>
       </div>
     </header>
 </template>
 
 <script>
+/**
+* @property {number} speed -- used in ball animation as multiplier for movement delay
+*/
+
+const SPEED = 0.08
+
 export default {
   name: 'Header',
-  data () {
-    return {
-      mouseX: 0,
-      mouseY: 0,
-      ballX: 0,
-      ballY: 0,
-      speed: 0.08
-    }
-  },
+  data: () => ({
+    mouseX: 0,
+    mouseY: 0,
+    ballX: 0,
+    ballY: 0
+  }),
   mounted () {
     this.animateBall()
   },
@@ -35,8 +38,8 @@ export default {
       let distX = this.mouseX - this.ballX
       let distY = this.mouseY - this.ballY
 
-      this.ballX = this.ballX + (distX * this.speed)
-      this.ballY = this.ballY + (distY * this.speed)
+      this.ballX = this.ballX + (distX * SPEED)
+      this.ballY = this.ballY + (distY * SPEED)
 
       if (this.$refs.ball && this.ballY < 400) {
         this.$refs.ball.style.left = `${this.ballX}px`
@@ -55,7 +58,7 @@ export default {
     flex-direction: column;
     margin-top: $size-small;
     cursor: default;
-    h1 {
+    &__title {
       font-size: $graphic-text;
       font-weight: 800;
       margin-bottom: $size-large;
@@ -64,7 +67,7 @@ export default {
       display: flex;
       justify-content: flex-end;
       width: 100%;
-      p {
+      &__text {
         width: 40%;
         padding: $size-medium;
         font-family: 'Slabo 27px', serif;
@@ -91,12 +94,12 @@ export default {
   @media only screen and (max-width: 600px) {
     .header {
       padding: $size-small;
-      h1 {
+      &__title {
         font-size: $large-text;
         font-weight: 500;
         margin-bottom: $size-medium;
       }
-      p {
+      &__intro__text {
         width: 100%;
         font-size: $fine-text;
         padding: 0;

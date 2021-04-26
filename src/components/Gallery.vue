@@ -1,8 +1,7 @@
 <template>
   <main class="gallery wrapper">
-
     <section class="gallery__intro">
-      This is some of my work
+      <span>This is some of my work</span>
       <div class="nav_guide">navigate with left and right arrows</div>
       <div class="nav_guide--mobile">scroll left or right</div>
     </section>
@@ -11,55 +10,65 @@
      ref="cardholder"
      class="gallery__cardholder">
       <div
-       :style="{ marginLeft: calcMargin + 'px' }"
-       class="gallery__cardholder__carousel"
-       @mousedown="mouseDown($event)"
-       @mouseleave="mouseLeave($event)"
-       @mouseup="mouseUp($event)"
-       @mousemove.prevent="mouseMove($event)"
-       >
+        :style="{ marginLeft: calcMargin + 'px' }"
+        class="gallery__cardholder__carousel"
+        @mousedown="mouseDown($event)"
+        @mouseleave="mouseLeave()"
+        @mouseup="mouseLeave()"
+        @mousemove.prevent="mouseMove($event)"
+      >
         <Card
-         v-for="(item, index) in $options.items"
-         :key="index"
-         :item="item"
-         :cardWidth="cardWidth"
-         >
+          v-for="(item, index) in $options.items"
+          :key="index"
+          :item="item"
+          :cardWidth="cardWidth"
+        >
        </Card>
       </div>
     </section>
     <section class="gallery__buttonholder">
       <button
-       @click="previous"
-       aria-label="button previous"
-       class="gallery__buttonholder__button" type="button" name="back"><img src="@/assets/back.svg" alt="arrow pointing back"/></button>
+        aria-label="button previous"
+        class="gallery__buttonholder__button"
+        type="button"
+        name="back"
+        @click="previous"
+      >
+        <img src="@/assets/back.svg" alt="arrow pointing back" />
+      </button>
       <button
-       @click="next"
-       aria-label="button next"
-       class="gallery__buttonholder__button" type="button" name="next"><img src="@/assets/next.svg" alt="arrow pointing forward"/></button>
+        aria-label="button next"
+        class="gallery__buttonholder__button"
+        type="button"
+        name="next"
+        @click="next"
+      >
+          <img src="@/assets/next.svg" alt="arrow pointing forward" />
+      </button>
     </section>
   </main>
 </template>
 
 <script>
+// Componets
 import Card from '@/components/Card'
+
+/**
+*@property {number} VISIBLE_CARD_NUMBER -- determines the number of cards displayed in view
+*/
 
 const VISIBLE_CARD_NUMBER = 3
 
 export default {
   name: 'Gallery',
-  components: {
-    Card
-  },
-  data () {
-    return {
-      calcMargin: 0,
-      cardHolderWidth: 0,
-      isDown: false,
-      startX: null,
-      scrollLeft: null,
-      isKeyboardNav: true // Switch boolean in case of eventListener removal
-    }
-  },
+  components: { Card },
+  data: () => ({
+    calcMargin: 0,
+    cardHolderWidth: 0,
+    isDown: false,
+    startX: null,
+    scrollLeft: null
+  }),
   computed: {
     cardWidth () {
       return Math.ceil(this.cardHolderWidth / VISIBLE_CARD_NUMBER)
@@ -67,62 +76,83 @@ export default {
   },
   created () {
     this.$options.items = [
-      { name: 'gallery eshop', description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, build with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/Gallery-eshop', live: '//www.stavrosperakis.com', logo: 'new' },
-      { name: 'tech startup', description: `website for a technology start-up in the Hague, including a style guide, created with vue, vuex & vue-router`, github: 'https://github.com/fontas-moraitis/apta', live: '//www.apta.tech', logo: '01' },
-      { name: 'online cv-page', description: `the web version of a CV page,created as an exercise, made with vue`, github: 'https://github.com/fontas-moraitis/doracv', live: '//www.doramicha.me/', logo: '02' },
-      { name: 'personal page', description: `link to the code of this webpage from the github repository`, github: 'https://github.com/fontas-moraitis/fontas', live: '//www.fontas.me/', logo: '03' }
+      {
+        name: 'comming soon',
+        description: `a PWA for calculating cooking mats, REACT`,
+        github: 'https://github.com/fontas-moraitis',
+        live: '',
+        logo: 'new'
+      },
+      {
+        name: 'gallery eshop',
+        description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, VUE & VUEx`,
+        github: 'https://github.com/fontas-moraitis/Gallery-eshop',
+        live: '//www.stavrosperakis.com',
+        logo: '01'
+      },
+      {
+        name: 'tech startup',
+        description: `website for a technology start-up in the Hague, including a style guide, VUE & VUEx`,
+        github: 'https://github.com/fontas-moraitis/apta',
+        live: '//www.apta.tech',
+        logo: '02'
+      },
+      {
+        name: 'personal page',
+        description: `link to the github repo of this page`,
+        github: 'https://github.com/fontas-moraitis/fontas',
+        live: '//www.fontas.me/',
+        logo: '03'
+      }
     ]
   },
   mounted () {
     this.cardHolderWidth = this.$refs.cardholder.offsetWidth
     window.addEventListener('resize', this.resizeHandler)
-    document.addEventListener('keydown', event => this.keyboardNavigation())
+    document.addEventListener('keydown', event => this.keyboardNavigation(event))
   },
   beforeDestroy () {
-    document.removeEventListener('keydown', event => this.keyboardNavigation())
+    document.removeEventListener('keydown', event => this.keyboardNavigation(event))
   },
   methods: {
     next () {
-      if (this.calcMargin >= (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER + 1))) {
-        this.calcMargin -= this.cardWidth
-      } else {
-        this.calcMargin = 0
-      }
+      this.calcMargin >= (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER + 1))
+        ? this.calcMargin -= this.cardWidth
+        : this.calcMargin = 0
     },
     previous () {
-      if (this.calcMargin <= (-this.cardWidth)) {
-        this.calcMargin += this.cardWidth
-      } else {
-        this.calcMargin = (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
-      }
+      this.calcMargin <= (-this.cardWidth)
+        ? this.calcMargin += this.cardWidth
+        : this.calcMargin = (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
     },
     resizeHandler () {
-      this.cardHolderWidth = this.$refs.cardholder.offsetWidth
+      this.cardHolderWidth = this.$refs.cardholder?.offsetWidth
     },
-    mouseDown ($event) {
+    mouseDown (event) {
       this.isDown = true
-      this.startX = $event.pageX - this.$refs.cardholder.offsetLeft
+      this.startX = event.pageX - this.$refs.cardholder.offsetLeft
       this.scrollLeft = this.$refs.cardholder.scrollLeft
     },
     mouseLeave () {
       this.isDown = false
     },
-    mouseUp () {
-      this.isDown = false
+    mouseMove (event) {
+      if (!this.isDown) {
+        const x = event.pageX - this.$refs.cardholder.offsetLeft
+        const walk = (x - this.startX) * 2
+        this.$refs.cardholder.scrollLeft = this.scrollLeft - walk
+      }
     },
-    mouseMove ($event) {
-      if (!this.isDown) return
-      const x = $event.pageX - this.$refs.cardholder.offsetLeft
-      const walk = (x - this.startX) * 2
-      this.$refs.cardholder.scrollLeft = this.scrollLeft - walk
-    },
-    keyboardNavigation () {
-      if (this.isKeyboardNav) {
-        if (event.keyCode === 39) {
+    keyboardNavigation (event) {
+      switch (event.keyCode) {
+        case 39:
           this.next()
-        } else if (event.keyCode === 37) {
+          break
+        case 37:
           this.previous()
-        }
+          break
+        default:
+          break
       }
     }
   }
@@ -150,6 +180,9 @@ export default {
     &__cardholder {
       max-width: $max-width;
       overflow: hidden;
+      &::-webkit-scrollbar {
+        width: 0px;
+      }
       &__carousel {
         height: 520px;
         display: flex;
@@ -196,6 +229,7 @@ export default {
       }
     }
   }
+
   @media only screen and (max-width: 600px) {
     .gallery {
       margin-top: $size-medium;
@@ -221,7 +255,7 @@ export default {
       }
       &__cardholder {
         &__carousel {
-          height: 360px;
+          height: 380px;
         }
       }
       &__buttonholder {

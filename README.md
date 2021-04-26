@@ -1,4 +1,4 @@
 # Personal gallery portfolio
-www.fontas.me
+## www.fontas.me
 
-A personal page where I practice new stuff and explore new graphic styles. The current page is build with VUE.js
+A personal page where I experiment with visual styling and new techs and effects.

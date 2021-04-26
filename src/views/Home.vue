@@ -7,17 +7,13 @@
 </template>
 
 <script>
+// Components
 import Header from '@/components/Header'
 import Gallery from '@/components/Gallery'
 import Footer from '@/components/Footer'
 
 export default {
   name: 'home',
-  components: {
-    Header,
-    Gallery,
-    // Animations,
-    Footer
-  }
+  components: { Header, Gallery, Footer }
 }
 </script>
