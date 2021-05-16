@@ -6,21 +6,21 @@
         href="https://github.com/fontas-moraitis"
         target="_blank" rel="noopener"
       >
-        <img width="20" height="20" src="@/assets/iconfinder-github.svg" alt="github-icon">
+        <img width="20" height="20" src="@/assets/icons/iconfinder-github.svg" alt="github-icon">
       </a>
       <a
         class="footer__container__link"
         href="https://dribbble.com/fontas"
         target="_blank" rel="noopener"
       >
-        <img width="20" height="20" src="@/assets/dribbble.svg" alt="dribbble-icon">
+        <img width="20" height="20" src="@/assets/icons/dribbble.svg" alt="dribbble-icon">
       </a>
       <a
         class="footer__container__link"
         href="https://www.linkedin.com/in/fontas-moraitis-34338819b/"
         target="_blank" rel="noopener"
       >
-        <img width="20" height="20" src="@/assets/iconfinder-linkedin.svg" alt="linkedin-icon">
+        <img width="20" height="20" src="@/assets/icons/iconfinder-linkedin.svg" alt="linkedin-icon">
       </a>
     </div>
   </footer>

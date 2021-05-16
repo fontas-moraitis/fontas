@@ -11,7 +11,7 @@
 				<div class="card__info__text__description">{{ item.description }}</div>
 				<a class="card__info__text__link" :href="item.github" target="_blank" rel="noopener">
 					<span>source code</span>
-					<img width="14rem" src="@/assets/iconfinder-github.svg" alt="github icon"/>
+					<img width="14rem" src="@/assets/icons/iconfinder-github.svg" alt="github icon"/>
 				</a>
 				<a class="card__info__text__link" :href="item.live" target="_blank" rel="noopener">
 					visit live
@@ -39,10 +39,10 @@ export default {
 
 <style lang="scss" scoped>
   .card {
+    @include shadow-out;
     height: 480px;
     flex-shrink: 0;
     flex-grow: 0;
-    @include shadow-out;
     padding: $size-small;
     margin: $size-medium;
     &__info {

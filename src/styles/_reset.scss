@@ -17,6 +17,30 @@ article, aside, footer, header, hgroup, menu, nav, section, address, div {
 }
 body {
 	line-height: 1;
+  &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      display: block;
+  }
+
+  &::-webkit-scrollbar-track {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      background-color: transparent;
+  }
+
+  &::-webkit-scrollbar {
+      width: 5px;
+      background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      height: 2px;
+      width: 10px;
+      background-color: black;
+      border-radius: 10px;
+      border: none;
+  }
 }
 ol, ul {
 	list-style: none;

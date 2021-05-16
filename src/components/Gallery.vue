@@ -34,7 +34,7 @@
         name="back"
         @click="previous"
       >
-        <img src="@/assets/back.svg" alt="arrow pointing back" />
+        <img src="@/assets/icons/arrow-left.svg" alt="arrow pointing back" />
       </button>
       <button
         aria-label="button next"
@@ -43,7 +43,7 @@
         name="next"
         @click="next"
       >
-          <img src="@/assets/next.svg" alt="arrow pointing forward" />
+          <img src="@/assets/icons/arrow-right.svg" alt="arrow pointing forward" />
       </button>
     </section>
   </main>
@@ -77,10 +77,10 @@ export default {
 	created () {
 		this.$options.items = [
 			{
-				name: 'comming soon',
-				description: `a PWA for calculating cooking mats, REACT`,
+				name: 'cupculator',
+				description: `a PWA for calculating cooking mats, REACT, Netlify Serverless funtions`,
 				github: 'https://github.com/fontas-moraitis',
-				live: '',
+				live: 'www.cupculator',
 				logo: 'new'
 			},
 			{

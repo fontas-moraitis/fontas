@@ -17,6 +17,12 @@
 */
 
 const SPEED = 0.08
+let LOWER_BORDER = 400
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  // if user is on a mobile device reduse the space the ball can move in
+  LOWER_BORDER = 200
+}
 
 export default {
 	name: 'Header',
@@ -41,7 +47,8 @@ export default {
 			this.ballX = this.ballX + (distX * SPEED)
 			this.ballY = this.ballY + (distY * SPEED)
 
-			if (this.$refs.ball && this.ballY < 400) {
+      // Check the ball's Y position to avoid getting below header
+			if (this.$refs.ball && this.ballY < LOWER_BORDER) {
 				this.$refs.ball.style.left = `${this.ballX}px`
 				this.$refs.ball.style.top = `${this.ballY}px`
 			}
