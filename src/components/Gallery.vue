@@ -80,7 +80,7 @@ export default {
 				name: 'cupculator',
 				description: `a PWA for calculating cooking mats, REACT, Netlify Serverless funtions`,
 				github: 'https://github.com/fontas-moraitis',
-				live: 'www.cupculator',
+				live: '//www.cupculator.com',
 				logo: 'new'
 			},
 			{
