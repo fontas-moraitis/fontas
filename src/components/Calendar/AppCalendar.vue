@@ -19,14 +19,14 @@
             <button
                 id="previous-month-selector"
                 aria-label="previousMonthBtn"
-                name="calendar__header__btn"
-                class="np-icon-btn"
+                name="previousMonthBtn"
+                class="calendar__header__btn"
                 type="button"
                 @click="getMonth('previous')"
             >
                 <img
-                    width="7"
-                    height="12"
+                    width="10"
+                    height="16"
                     src="@/assets/icons/arrow-left.svg"
                     alt="back"
                 />
@@ -45,8 +45,8 @@
                 @click="getMonth('next')"
             >
                 <img
-                    width="7"
-                    height="12"
+                    width="10"
+                    height="16"
                     src="@/assets/icons/arrow-right.svg"
                     alt="arrowRight"
                 />
@@ -313,9 +313,6 @@ $app-calendar-border-1-grey: 1px solid $app-calendar-color-grey;
         padding: 0 4% 8px 4%;
         &__btn {
           cursor: pointer;
-          &:active {
-            @include shadow-in;
-          }
         }
         &__month {
             color: $color-text-dark;
@@ -341,6 +338,7 @@ $app-calendar-border-1-grey: 1px solid $app-calendar-color-grey;
     /* | Mon | Tue | Wed | Thu | Fri | Sat | Sun | */
     color: $color-text-dark;
     font-size: $xfine-text;
+    font-weight: $bold-text;
     background-color: $app-calendar-color-white;
     padding-bottom: 4px;
     padding-top: 8px;
@@ -393,12 +391,13 @@ $app-calendar-border-1-grey: 1px solid $app-calendar-color-grey;
         &--selected {
             & > .days-grid__calendar-day__number {
               @include shadow-out;
-                background-color: $app-calendar-color-black;
-                color: $app-calendar-color-whiteoff;
+              background-color: $app-calendar-color-black;
+              color: $app-calendar-color-whiteoff;
+              border: 1px solid white;
             }
             &--end {
                 background: linear-gradient(90deg, $app-calendar-color-whiteoff, $app-calendar-color-white);
-                border-radius: 0 50% 50% 0;
+                border-radius: 0 50px 50px 0;
             }
         }
         &--period,
@@ -414,7 +413,7 @@ $app-calendar-border-1-grey: 1px solid $app-calendar-color-grey;
                 height: 100%;
                 left: -75%;
                 background-color: $app-calendar-color-whiteoff;
-                border-radius: 50% 0 0 50%;
+                border-radius: 50px 0 0 50px;
             }
         }
         &__number {
