@@ -1,6 +1,9 @@
 <template>
     <section class="playground wrapper">
-      <h3 class="playground__heading">Playground</h3>
+      <div class="playground__heading">
+        <h3 class="playground__heading__title">Playground</h3>
+        <span class="playground__heading__subtitle">components in neomorphic style</span>
+      </div>
       <AppCalendar/>
     </section>
 </template>
@@ -17,23 +20,30 @@ export default {
 
 <style lang="scss" scoped>
 .playground {
+  @include flex-column-center;
   width: 100%;
   max-width: $max-width;
-  display: flex;
-  flex-direction: column;
   padding: 10px;
-  align-items: center;
   &__heading {
     width: 100%;
     text-align: left;
-    font-size: $standar-text;
-    font-weight: $xbold-text;
     text-transform: uppercase;
     margin-bottom: $size-large;
+    &__title {
+      font-size: $standar-text;
+      font-weight: $xbold-text;
+      margin-bottom: 6px;
+    }
+    &__subtitle {
+      text-transform: lowercase;
+      font-weight: $thin-text;
+      font-size: $size-small;
+      margin-top: $size-xxsmall;
+    }
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $mobile-breaking-point) {
   .playground {
     display: none;
   }

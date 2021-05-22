@@ -2,13 +2,14 @@
   <main class="gallery wrapper">
     <section class="gallery__intro">
       <span>This is some of my work</span>
-      <div class="nav_guide">navigate with left and right arrows</div>
+      <div class="nav_guide">links on the cards for live apps and github repos</div>
       <div class="nav_guide--mobile">scroll left or right</div>
     </section>
 
     <section
      ref="cardholder"
-     class="gallery__cardholder">
+     class="gallery__cardholder"
+    >
       <div
         :style="{ marginLeft: calcMargin + 'px' }"
         class="gallery__cardholder__carousel"
@@ -22,39 +23,52 @@
           :key="index"
           :item="item"
           :cardWidth="cardWidth"
-        >
-       </Card>
+        />
       </div>
     </section>
-    <section class="gallery__buttonholder">
+    <section class="gallery__btn-holder">
       <button
         aria-label="button previous"
-        class="gallery__buttonholder__button"
+        class="gallery__btn-holder__btn"
         type="button"
-        name="back"
+        name="previous card"
+        title="previous card"
         @click="previous"
       >
-        <img src="@/assets/icons/arrow-left.svg" alt="arrow pointing back" />
+        <img class="gallery__btn-holder__btn__img" src="@/assets/icons/arrow-left.svg" alt="previous card" />
       </button>
       <button
         aria-label="button next"
-        class="gallery__buttonholder__button"
+        class="gallery__btn-holder__btn"
         type="button"
-        name="next"
+        name="next card"
+        title="next card"
         @click="next"
       >
-          <img src="@/assets/icons/arrow-right.svg" alt="arrow pointing forward" />
+          <img class="gallery__btn-holder__btn__img" src="@/assets/icons/arrow-right.svg" alt="next card" />
       </button>
     </section>
   </main>
 </template>
 
 <script>
-// Componets
+import projects from '@/data/projects'
+// Sounds
+import { playSound } from '@/utils/playSound.js'
+import clickSound from '@/assets/sounds/drop_003.ogg'
+// Components
 import Card from '@/components/Card'
 
 /**
-*@property {number} VISIBLE_CARD_NUMBER -- determines the number of cards displayed in view
+* @property {Number} VISIBLE_CARD_NUMBER -- determines the number of cards displayed in view
+* @property {Array} projects -- array of objects to populate card structure:
+* {
+    name: name of project,
+    description: description of project,
+    github: link to github page,
+    live: link to website,
+    logo: number or logo for card
+}
 */
 
 const VISIBLE_CARD_NUMBER = 3
@@ -75,36 +89,7 @@ export default {
 		}
 	},
 	created () {
-		this.$options.items = [
-			{
-				name: 'cupculator',
-				description: `a PWA for calculating cooking mats, REACT, Netlify Serverless funtions`,
-				github: 'https://github.com/fontas-moraitis',
-				live: '//www.cupculator.com',
-				logo: 'new'
-			},
-			{
-				name: 'gallery eshop',
-				description: `a gallery and shop mock-up for an artist in Athens, content is handled via Storyblok, VUE & VUEx`,
-				github: 'https://github.com/fontas-moraitis/Gallery-eshop',
-				live: '//www.stavrosperakis.com',
-				logo: '01'
-			},
-			{
-				name: 'tech startup',
-				description: `website for a technology start-up in the Hague, including a style guide, VUE & VUEx`,
-				github: 'https://github.com/fontas-moraitis/apta',
-				live: '//www.apta.tech',
-				logo: '02'
-			},
-			{
-				name: 'personal page',
-				description: `link to the github repo of this page`,
-				github: 'https://github.com/fontas-moraitis/fontas',
-				live: '//www.fontas.me/',
-				logo: '03'
-			}
-		]
+    this.$options.items = projects
 	},
 	mounted () {
 		this.cardHolderWidth = this.$refs.cardholder.offsetWidth
@@ -119,11 +104,13 @@ export default {
 			this.calcMargin >= (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER + 1))
 				? this.calcMargin -= this.cardWidth
 				: this.calcMargin = 0
+        playSound(clickSound)
 		},
 		previous () {
 			this.calcMargin <= (-this.cardWidth)
 				? this.calcMargin += this.cardWidth
 				: this.calcMargin = (-this.cardWidth) * (this.$options.items.length - (VISIBLE_CARD_NUMBER)) || (-this.cardWidth)
+        playSound(clickSound)
 		},
 		resizeHandler () {
 			this.cardHolderWidth = this.$refs.cardholder?.offsetWidth
@@ -171,7 +158,7 @@ export default {
         text-transform: lowercase;
         font-weight: $thin-text;
         font-size: $size-small;
-        margin-top: 6px;
+        margin-top: $size-xxsmall;
       }
       .nav_guide--mobile {
         display: none;
@@ -184,21 +171,19 @@ export default {
         width: 0px;
       }
       &__carousel {
-        height: 520px;
+        height: $gallery-height;
         display: flex;
         margin: 0;
         transition: all 1000ms ease;
-        .card {
-          border-radius: 10px;
-        }
       }
     }
-    &__buttonholder {
+    &__btn-holder {
       max-width: $max-width;
       margin: $size-small 0 $size-medium 0;
       display: flex;
       justify-content: center;
-      &__button {
+      &__btn {
+        @include shadow-out;
         width: $box-element;
         height: $box-element;
         display: flex;
@@ -206,36 +191,37 @@ export default {
         align-items: center;
         border: 1px solid $color-border-highlight;
         outline: none;
-        @include shadow-out;
         border-radius: 8px;
         margin: $size-small;
-        & img {
-          width: 20px;
-          height: 20px;
+        &__img {
+          width: $icon-button-size;
+          height: $icon-button-size;
         }
         &:hover {
           cursor: pointer;
+        }
+        &:focus-visible {
+          border: 1px solid $color-shadow-dark;
         }
         &:active {
           @include shadow-in;
           border: none;
           outline: none;
           cursor: pointer;
-          & img {
-            width: 14px;
-            height: 14px;
+          img {
+            transform: scale(0.8);
           }
         }
       }
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $mobile-breaking-point) {
     .gallery {
       margin-top: $size-medium;
       &__cardholder {
         overflow-x: scroll;
-        height: 400px;
+        height: $gallery-height-mobile;
       }
       &__intro {
         margin: 0 0 $size-small 0;
@@ -247,18 +233,13 @@ export default {
         text-transform: lowercase;
         font-weight: $thin-text;
         font-size: $size-xsmall;
-        margin-top: 6px;
+        margin-top: $size-xxsmall;
         }
         .nav_guide {
           display: none;
         }
       }
-      &__cardholder {
-        &__carousel {
-          height: 380px;
-        }
-      }
-      &__buttonholder {
+      &__btn-holder {
         display: none;
       }
     }

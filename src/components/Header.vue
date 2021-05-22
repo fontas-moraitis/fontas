@@ -13,14 +13,15 @@
 
 <script>
 /**
-* @property {number} speed -- used in ball animation as multiplier for movement delay
+* @property {number} SPEED -- used in ball animation as multiplier for movement delay.
+* @property {number} LOWER_BORDER -- indicates where the ball stops, differs on desktop and mobile.
 */
 
 const SPEED = 0.08
 let LOWER_BORDER = 400
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  // if user is on a mobile device reduse the space the ball can move in
+  // if user is on a mobile device reduse the space the ball can move in.
   LOWER_BORDER = 200
 }
 
@@ -67,7 +68,7 @@ export default {
     cursor: default;
     &__title {
       font-size: $graphic-text;
-      font-weight: 800;
+      font-weight: $xxbold-text;
       margin-bottom: $size-large;
     }
     &__intro {
@@ -98,12 +99,12 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $mobile-breaking-point) {
     .header {
       padding: $size-small;
       &__title {
         font-size: $large-text;
-        font-weight: 500;
+        font-weight: $medium-text;
         margin-bottom: $size-medium;
       }
       &__intro__text {

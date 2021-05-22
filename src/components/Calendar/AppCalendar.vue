@@ -86,6 +86,11 @@
 import dayjs from 'dayjs'
 import { getMonthDays, createDaysForPreviousMonth, createDaysForNextMonth, normalizeDate } from '@/utils/calendar'
 
+// Sounds
+import closeSound from '@/assets/sounds/switch_005.ogg'
+import selectSound from '@/assets/sounds/impactMetal_004.ogg'
+import { playSound } from '@/utils/playSound'
+
 /**
  * Components uses dayjs library for formatting Strings to Dates. Safari and Firefox
  * can not process all date formats like Chrome and Edge so 'YYYY/MM/DD' is used as
@@ -243,15 +248,18 @@ export default {
             ) {
                 this.selectedEndDay = selectedDate
                 this.$emit('endDaySelected', this.selectedEndDay)
+                playSound(selectSound)
             } else if (!this.selectedStartDay && !this.isDateDisabled(selectedDate)) {
                 this.selectedStartDay = selectedDate
                 this.$emit('startDaySelected', this.selectedStartDay)
+                playSound(selectSound)
             }
         },
         clearDates () {
             this.selectedStartDay = null
             this.selectedEndDay = null
             this.$emit('clearDates')
+            playSound(closeSound)
         }
     },
     watch: {

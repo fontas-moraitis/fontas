@@ -6,21 +6,21 @@
         href="https://github.com/fontas-moraitis"
         target="_blank" rel="noopener"
       >
-        <img width="20" height="20" src="@/assets/icons/iconfinder-github.svg" alt="github-icon">
+        <img class="footer__container__link__img" src="@/assets/icons/iconfinder-github.svg" alt="github-icon">
       </a>
       <a
         class="footer__container__link"
         href="https://dribbble.com/fontas"
         target="_blank" rel="noopener"
       >
-        <img width="20" height="20" src="@/assets/icons/dribbble.svg" alt="dribbble-icon">
+        <img class="footer__container__link__img" src="@/assets/icons/dribbble.svg" alt="dribbble-icon">
       </a>
       <a
         class="footer__container__link"
         href="https://www.linkedin.com/in/fontas-moraitis-34338819b/"
         target="_blank" rel="noopener"
       >
-        <img width="20" height="20" src="@/assets/icons/iconfinder-linkedin.svg" alt="linkedin-icon">
+        <img class="footer__container__link__img" src="@/assets/icons/iconfinder-linkedin.svg" alt="linkedin-icon">
       </a>
     </div>
   </footer>
@@ -41,22 +41,30 @@ export default {
       display: flex;
       justify-content: space-between;
       &__link {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-center-center;
+        @include shadow-button;
+        width: $box-element;
+        height: $box-element;
         border-radius: 10px;
         background: linear-gradient(145deg, #ffffff, #d7d6d6);
-        box-shadow: 2px 2px 6px $color-shadow-dark, -2px -2px 6px $color-shadow-light;
+        &__img {
+          width: $icon-button-size;
+          height: $icon-button-size;
+        }
+        &:focus-visible {
+          border: 1px solid $color-shadow-dark;
+        }
         &:active {
+          @include shadow-in;
           background: #efeeee;
-          box-shadow: inset 4px 4px 10px$color-shadow-dark, inset -4px -4px 10px$color-shadow-light;
+          img {
+            transform: scale(0.8);
+          }
         }
       }
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $mobile-breaking-point) {
     .footer {
       &__container {
         max-width: $small-width;
