@@ -10,10 +10,10 @@
       </a>
       <a
         class="footer__container__link"
-        href="https://dribbble.com/fontas"
+        href="https://www.behance.net/xenofonmoraitis"
         target="_blank" rel="noopener"
       >
-        <img class="footer__container__link__img" src="@/assets/icons/dribbble.svg" alt="dribbble-icon">
+        <img class="footer__container__link__img" src="@/assets/icons/behance.svg" alt="behance-icon">
       </a>
       <a
         class="footer__container__link"

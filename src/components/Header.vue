@@ -93,9 +93,9 @@ export default {
       top: 0;
       left: 0;
       transform: translate(-50%, -50%);
-      background: $color-text-dark;
+      background-color: salmon;
 
-      mix-blend-mode: difference;
+      mix-blend-mode: darken;
     }
   }
 
