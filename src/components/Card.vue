@@ -103,9 +103,10 @@ export default {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .card {
     @include shadow-out-mobile;
+    display: flex;
     margin: $size-medium;
     height: $card-total-height-mobile;
     padding: $size-xsmall;
@@ -113,11 +114,15 @@ export default {
       width: $box-element;
       height: $box-element;
       font-size: $fine-text;
+      flex-shrink: 0;
     }
     &__text {
       display: flex;
       align-items: center;
+      justify-content: center;
+      margin-top: $size-small;
       &__title {
+        margin: 0;
         writing-mode: vertical-lr;
         transform: rotate(-180deg);
         font-size: $mobile-text;
@@ -129,9 +134,8 @@ export default {
     }
     &__buttons {
       &__link {
-        height: 100%;
-        width: $card-button-height;
-        margin: $size-xxsmall;
+        width: auto;
+        height: auto;
         writing-mode: vertical-lr;
         transform: rotate(-180deg);
         font-size: $mobile-text;
